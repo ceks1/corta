@@ -1,177 +1,379 @@
 <!doctype html>
 <html lang="sr-Latn" id="top">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Corta Uno — Mediteranska kuhinja</title>
-  <meta name="description" content="Mediteranski duh, pažljivo pripremljena jela i veče koje ne traži da požurite.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corta Uno — Mediteranska kuhinja</title>
+<meta name="description" content="Mediteranski duh, pažljivo pripremljena jela i veče koje ne traži da požurite.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap">
+<style>
+:root{--g900:#102f29;--g800:#173c34;--g700:#203e35;--cream:#f5f1e8;--cream2:#eae5da;--gold:#cdb477;--grey:#58635b;--sage:#d8decf;--line:#cbc7b8;--gold-line:rgba(205,180,119,.27);--serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;--sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--px:clamp(20px,5vw,72px);--max:1440px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--g700);font:400 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,p,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--gold);color:var(--g900);padding:12px 16px}
+.skip:focus{left:8px}
+
+/* layout */
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--px)}
+.section{padding-block:clamp(56px,8vw,112px)}
+.dark{background:var(--g800);color:var(--cream)}
+.soft{background:var(--cream2)}
+.split{display:grid;gap:clamp(32px,7vw,112px);align-items:center;grid-template-columns:1fr}
+.split>*,.grid-3>*{min-width:0}
+.stack{display:flex;flex-direction:column;gap:24px}
+.row{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center}
+.grid-3{display:grid;gap:40px;grid-template-columns:1fr}
+@media (min-width:900px){
+.split{grid-template-columns:1fr 1fr}
+.split--photo-left{grid-template-columns:5fr 7fr}
+.split--photo-right{grid-template-columns:7fr 5fr}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+}
+
+/* typography */
+.eyebrow{font:500 12px/1.33 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.dark .eyebrow,.hero .eyebrow{color:var(--gold)}
+.display-xl,.display-l,.display-m,.display-s{font-family:var(--serif);font-weight:400;text-wrap:balance}
+.display-xl{font-size:clamp(54px,7vw,94px);line-height:1.03;letter-spacing:-.01em}
+.display-l{font-size:clamp(40px,4.5vw,64px);line-height:1.06}
+.display-m{font-size:clamp(32px,3.4vw,48px);line-height:1.1}
+.display-s{font-size:clamp(28px,2.4vw,34px);line-height:1.15}
+.lead{font-size:18px;line-height:1.56;max-width:44ch}
+.text{color:var(--grey);max-width:62ch}
+.dark .text,.dark .lead{color:var(--sage)}
+.small{font-size:14px;line-height:1.57}
+
+/* buttons & links */
+.btn,.link{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Cpath d='M1 7h17M12 1l6 6-6 6' stroke='%23000' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.btn::after,.link::after{content:"";width:20px;height:14px;flex:none;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .2s}
+.btn:hover::after,.link:hover::after{transform:translateX(4px)}
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;min-height:52px;padding:0 24px;border:1px solid transparent;font:500 14px/1.43 var(--sans);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.btn--gold{background:var(--gold);color:var(--g900)}
+.btn--dark{background:var(--g800);color:var(--cream)}
+.btn--outline{border-color:var(--gold);color:var(--gold);background:transparent}
+.btn--gold:hover{background:#d8c38d}
+.btn--dark:hover{background:var(--g900)}
+.btn--outline:hover{background:rgba(205,180,119,.1)}
+.link{display:inline-flex;align-items:center;gap:14px;min-height:44px;font:500 14px/1.43 var(--sans);letter-spacing:.04em;text-decoration:none;border-bottom:1px solid currentColor;color:var(--g800)}
+.dark .link,.hero .link{color:var(--gold)}
+@media (max-width:599px){.hide-sm{display:none}.btn--block-sm{width:100%}}
+
+/* photos */
+.photo{position:relative;overflow:hidden;background:var(--sage)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.ar-4-5{aspect-ratio:4/5}.ar-16-9{aspect-ratio:16/9}.ar-1-1{aspect-ratio:1/1}.ar-6-5{aspect-ratio:6/5}
+.caption{margin-top:16px}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:var(--g800);color:var(--cream);border-bottom:1px solid var(--gold-line)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:104px;gap:24px}
+.logo{display:block;width:80px;height:80px;border-radius:50%;overflow:hidden;flex:none}
+.logo img{width:100%;height:100%;object-fit:cover}
+.nav{display:flex;align-items:center;gap:8px}
+.nav a.nav-link{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font-size:15px;text-decoration:none;border-bottom:2px solid transparent}
+.nav a.nav-link:hover{color:var(--gold)}
+.nav .btn{margin-left:16px}
+.nav-toggle{display:none;width:44px;height:44px;border:1px solid rgba(205,180,119,.5);background:none;color:var(--cream);cursor:pointer;align-items:center;justify-content:center}
+.nav-toggle svg{width:22px;height:16px}
+.nav-extra{display:none}
+@media (max-width:899px){
+.site-header .wrap{min-height:76px}
+.logo{width:56px;height:56px}
+.nav-toggle{display:inline-flex}
+.nav{position:fixed;inset:76px 0 0;flex-direction:column;align-items:stretch;gap:0;padding:24px var(--px) 40px;background:var(--g900);overflow-y:auto;transform:translateX(100%);visibility:hidden;transition:transform .3s,visibility .3s}
+.nav-open .nav{transform:none;visibility:visible}
+.nav a.nav-link{font:400 32px/1.12 var(--serif);min-height:64px;padding:0;border-bottom:1px solid var(--gold-line);justify-content:space-between}
+.nav .btn{margin:28px 0 0;width:100%}
+.nav-extra{display:block;margin-top:16px;color:var(--sage);font-size:14px}
+body.nav-lock{overflow:hidden}
+}
+
+/* weekly banner */
+.week-banner{background:var(--gold);color:var(--g900)}
+.week-banner .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px}
+.week-banner p{display:flex;align-items:center;gap:16px;font-size:16px}
+.tag{display:inline-block;padding:4px 10px;background:var(--g900);color:var(--gold);font:500 12px/1.33 var(--sans);letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:599px){.week-banner p{font-size:14px}.week-banner .tag{display:none}}
+
+/* hero */
+.hero{background:var(--g800);color:var(--cream)}
+.hero-grid{display:grid;gap:40px;padding-top:clamp(40px,4vw,48px)}
+.hero-copy{display:flex;flex-direction:column;gap:28px;padding-top:clamp(0px,5vw,72px);max-width:520px}
+.hero-photo{min-height:420px}
+.hero-strip{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 24px;padding-block:20px}
+@media (min-width:900px){.hero-grid{grid-template-columns:520px 1fr;gap:48px;padding-right:0}.hero-photo{min-height:640px}}
+
+/* dishes & info */
+.dish{display:flex;flex-direction:column;gap:14px}
+.dish h3{font:400 clamp(28px,2.4vw,34px)/1.15 var(--serif);color:var(--g700)}
+.dish p{color:var(--grey)}
+.info-block{display:flex;flex-direction:column;gap:8px}
+
+/* footer */
+.site-footer{background:var(--g900);color:var(--cream);padding-block:clamp(56px,7vw,88px) 32px}
+.footer-top{display:grid;gap:40px}
+@media (min-width:1000px){.footer-top{grid-template-columns:340px 1fr;gap:64px}}
+.footer-brand{display:flex;flex-direction:column;gap:20px}
+.footer-brand .logo{width:112px;height:112px}
+.footer-cols{display:grid;gap:32px;grid-template-columns:1fr}
+@media (min-width:600px){.footer-cols{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.footer-cols{grid-template-columns:150px repeat(3,1fr);gap:56px}}
+.footer-col h2{font:500 12px/1.33 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.footer-col a:not(.link){display:flex;align-items:center;min-height:44px;color:var(--cream);text-decoration:none;font-size:15px}
+.footer-col a:not(.link):hover{color:var(--gold)}
+.footer-col p,.footer-hours li{font-size:14px;line-height:1.57}
+.footer-col .link{color:var(--gold)}
+.footer-hours li{display:flex;justify-content:space-between;gap:16px;padding-block:4px}
+.footer-hours span:first-child{color:var(--sage)}
+.footer-social{display:flex;gap:20px}
+.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 24px;margin-top:64px;padding-top:24px;border-top:1px solid var(--gold-line);font-size:14px;color:var(--sage)}
+.footer-bottom a{display:inline-flex;align-items:center;min-height:44px;color:var(--cream);text-decoration:none}
+</style>
 </head>
-<body data-page="pocetna">
-  <div id="site-header"></div>
+<body>
+<a class="skip" href="#main">Preskoči na sadržaj</a>
 
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-grid wrap">
-        <div class="hero-copy">
-          <p class="eyebrow">Corta Uno · Od 2026.</p>
-          <h1 class="display-xl">Za stolom,<br>vreme je<br>vaše.</h1>
-          <p class="lead">Mediteranski duh, pažljivo pripremljena jela i veče koje ne traži da požurite.</p>
-          <div class="row">
-            <a class="btn btn--gold btn--block-sm" href="meni.html">Pogledaj meni</a>
-            
-          </div>
+<!-- ZAGLAVLJE -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="img/logo.png" alt="Corta Uno — početna" width="80" height="80"></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="glavna-navigacija" aria-label="Otvori meni">
+      <svg viewBox="0 0 22 16" aria-hidden="true"><path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="glavna-navigacija" aria-label="Glavna navigacija">
+      <a class="nav-link" href="o-nama.html">Naša priča</a>
+      <a class="nav-link" href="galerija.html">Ambijent</a>
+      <a class="nav-link" href="kontakt.html">Lokacija</a>
+      <a class="nav-link" href="karta-pica.html">Karta pića</a>
+      <a class="btn btn--outline" href="meni.html">Jelovnik</a>
+      <p class="nav-extra">Lorem ipsum 12, 00000 Dolor<br>Pon – Pet 00:00 – 00:00</p>
+    </nav>
+  </div>
+</header>
+<div class="week-banner">
+  <div class="wrap">
+    <p><span class="tag">Novo</span>Svake nedelje novi nedeljni meni.</p>
+  </div>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Corta Uno · Od 2026.</p>
+        <h1 class="display-xl">Za stolom,<br>vreme je<br>vaše.</h1>
+        <p class="lead">Mediteranski duh, pažljivo pripremljena jela i veče koje ne traži da požurite.</p>
+        <div class="row">
+          <a class="btn btn--gold btn--block-sm" href="meni.html">Pogledaj meni</a>
         </div>
-        <div class="photo hero-photo"><img src="img/riba-spanac.jpg" alt="Lorem ipsum dolor sit amet" width="1280" height="1600" fetchpriority="high"></div>
       </div>
-      <div class="hero-strip wrap">
-        <p class="eyebrow">Mediteranska kuhinja · Vino · Dobro društvo</p>
-        <a class="link" href="o-nama.html">Upoznajte Corta Uno</a>
-      </div>
-    </section>
+      <div class="photo hero-photo"><img src="img/riba-spanac.jpg" alt="Lorem ipsum dolor sit amet" width="1280" height="1600" fetchpriority="high"></div>
+    </div>
+    <div class="hero-strip wrap">
+      <p class="eyebrow">Mediteranska kuhinja · Vino · Dobro društvo</p>
+      <a class="link" href="o-nama.html">Upoznajte Corta Uno</a>
+    </div>
+  </section>
 
-    <!-- NAŠA PRIČA -->
-    <section class="section">
-      <div class="wrap split split--photo-left">
+  <!-- NAŠA PRIČA -->
+  <section class="section">
+    <div class="wrap split split--photo-left">
+      <figure>
+        <div class="photo ar-6-5"><img src="img/kapucino-ruke.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="1280" height="1600"></div>
+        <figcaption class="eyebrow caption">Lorem ipsum dolor sit.</figcaption>
+      </figure>
+      <div class="stack">
+        <p class="eyebrow">Lorem ipsum</p>
+        <h2 class="display-l">Lorem ipsum dolor sit amet consectetur.</h2>
+        <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        <div class="row">
+          <a class="btn btn--dark btn--block-sm" href="karta-pica.html">Pogledaj kartu pića</a>
+          <a class="link" href="o-nama.html">Više o nama</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IZBOR IZ JELOVNIKA -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap stack" style="gap:40px">
+      <hr style="border:0;border-top:1px solid var(--line);margin:0">
+      <div class="row" style="justify-content:space-between;align-items:flex-end">
+        <div class="stack" style="gap:16px;max-width:650px">
+          <p class="eyebrow">Lorem ipsum</p>
+          <h2 class="display-l">Lorem ipsum dolor sit amet.</h2>
+        </div>
+        <a class="link" href="meni.html">Pogledajte jelovnik</a>
+      </div>
+      <div class="grid-3">
+        <article class="dish">
+          <div class="photo ar-6-5"><img src="img/biftek.jpg" alt="Lorem ipsum dolor" loading="lazy" width="1280" height="1600"></div>
+          <p class="eyebrow">Lorem ipsum</p><h3>Lorem ipsum dolor</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+        </article>
+        <article class="dish">
+          <div class="photo ar-4-5"><img src="img/cezar-salata.jpg" alt="Lorem ipsum dolor" loading="lazy" width="1280" height="1600"></div>
+          <p class="eyebrow">Lorem ipsum</p><h3>Lorem ipsum dolor</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+        </article>
+        <article class="dish">
+          <div class="photo ar-6-5"><img src="img/ruska-snicla-pire.jpg" alt="Lorem ipsum dolor" loading="lazy" width="1280" height="1600"></div>
+          <p class="eyebrow">Lorem ipsum</p><h3>Lorem ipsum dolor</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMBIJENT -->
+  <section class="section dark">
+    <div class="wrap stack" style="gap:48px">
+      <div class="split" style="align-items:end">
+        <div class="stack" style="gap:20px">
+          <p class="eyebrow">Lorem ipsum</p>
+          <h2 class="display-l">Lorem ipsum dolor sit. Amet consectetur elit.</h2>
+        </div>
+        <div class="stack" style="gap:20px">
+          <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <a class="link" href="galerija.html" style="align-self:flex-start">Pogledaj naš ambijent</a>
+        </div>
+      </div>
+      <div class="split split--photo-right" style="align-items:end;gap:32px">
+        <div class="photo ar-16-9"><img src="img/reka-zalazak.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="1600" height="1200"></div>
         <figure>
-          <div class="photo ar-6-5"><img src="img/kapucino-ruke.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="1280" height="1600"></div>
-          <figcaption class="eyebrow caption">Lorem ipsum dolor sit.</figcaption>
+          <div class="photo ar-1-1"><img src="img/cokolada-caj-reka.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="1280" height="1600"></div>
+          <figcaption class="eyebrow caption">Lorem ipsum dolor sit amet.</figcaption>
         </figure>
-        <div class="stack">
-          <p class="eyebrow">Lorem ipsum</p>
-          <h2 class="display-l">Lorem ipsum dolor sit amet consectetur.</h2>
-          <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-          <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          <div class="row">
-            <a class="btn btn--dark btn--block-sm" href="karta-pica.html">Pogledaj kartu pića</a>
-            <a class="link" href="o-nama.html">Više o nama</a>
-          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILOZOFIJA -->
+  <section class="section">
+    <div class="wrap stack" style="gap:44px">
+      <div class="row" style="gap:16px 100px">
+        <p class="eyebrow">Lorem ipsum dolor</p>
+        <h2 class="display-m" style="flex:1;min-width:260px">Lorem ipsum dolor sit. Amet consectetur.</h2>
+      </div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:0;width:100%">
+      <div class="grid-3" style="gap:32px 64px">
+        <div class="stack" style="gap:16px"><h3 class="display-s">Lorem ipsum</h3><p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p></div>
+        <div class="stack" style="gap:16px"><h3 class="display-s">Dolor sit</h3><p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p></div>
+        <div class="stack" style="gap:16px"><h3 class="display-s">Amet elit</h3><p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HRANA I VINO -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap split split--photo-left">
+      <div class="photo ar-4-5"><img src="img/kapucino-enterijer.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="1200" height="1600"></div>
+      <div class="stack">
+        <p class="eyebrow">Lorem ipsum</p>
+        <h2 class="display-l">Lorem ipsum.<br>Dolor sit amet.</h2>
+        <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <ul style="border-top:1px solid var(--line);padding-top:24px;display:grid;gap:18px">
+          <li class="row" style="justify-content:space-between"><span class="small">Lorem ipsum dolor</span><em style="font:italic 22px/1.3 var(--serif);color:var(--grey)">Sit amet consectetur</em></li>
+          <li class="row" style="justify-content:space-between"><span class="small">Lorem ipsum dolor</span><em style="font:italic 22px/1.3 var(--serif);color:var(--grey)">Sit amet consectetur</em></li>
+          <li class="row" style="justify-content:space-between"><span class="small">Lorem ipsum dolor</span><em style="font:italic 22px/1.3 var(--serif);color:var(--grey)">Sit amet consectetur</em></li>
+        </ul>
+        <a class="btn btn--dark btn--block-sm" href="karta-pica.html" style="align-self:flex-start">Pogledaj kartu pića</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLATKI ZAVRŠETAK -->
+  <section class="soft">
+    <div class="split" style="gap:0;align-items:stretch">
+      <div class="stack wrap" style="justify-content:center;padding-block:clamp(56px,7vw,96px);margin:0;max-width:672px">
+        <p class="eyebrow">Lorem ipsum</p>
+        <h2 class="display-l">Lorem ipsum dolor?<br>Sit amet.</h2>
+        <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <a class="link" href="meni.html" style="align-self:flex-start">Pogledaj deserte</a>
+      </div>
+      <div class="photo" style="min-height:420px"><img src="img/latte-srce.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="900" height="1600"></div>
+    </div>
+  </section>
+
+  <!-- POSETITE NAS -->
+  <section class="section" style="padding-block:clamp(48px,5vw,72px)">
+    <div class="wrap row" style="justify-content:space-between;gap:32px 64px">
+      <div class="stack" style="gap:12px;max-width:520px">
+        <p class="eyebrow">Lorem ipsum</p>
+        <h2 class="display-m">Lorem ipsum dolor sit amet.</h2>
+      </div>
+      <div class="row" style="gap:24px 48px;align-items:flex-start">
+        <div class="info-block"><p class="eyebrow">Adresa</p><p>Lorem ipsum 12<br>00000 Dolor</p></div>
+        <div class="info-block"><p class="eyebrow">Radno vreme</p><p>Pon – Pet 00:00 – 00:00<br>Sub – Ned 00:00 – 00:00</p></div>
+      </div>
+      <a class="btn btn--dark btn--block-sm" href="kontakt.html">Pogledaj lokaciju</a>
+    </div>
+  </section>
+</main>
+
+<!-- PODNOŽJE -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="index.html"><img src="img/logo.png" alt="Corta Uno — početna" width="112" height="112"></a>
+        <p class="display-s">Lorem ipsum dolor sit amet.</p>
+        <p class="small" style="color:var(--sage)">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+        <div class="footer-col footer-social">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
-    </section>
-
-    <!-- IZBOR IZ JELOVNIKA -->
-    <section class="section" style="padding-top:0">
-      <div class="wrap stack" style="gap:40px">
-        <hr style="border:0;border-top:1px solid var(--line);margin:0">
-        <div class="row" style="justify-content:space-between;align-items:flex-end">
-          <div class="stack" style="gap:16px;max-width:650px">
-            <p class="eyebrow">Lorem ipsum</p>
-            <h2 class="display-l">Lorem ipsum dolor sit amet.</h2>
-          </div>
-          <a class="link" href="meni.html">Pogledajte jelovnik</a>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h2>Navigacija</h2>
+          <a href="meni.html">Meni</a><a href="karta-pica.html">Karta pića</a><a href="galerija.html">Galerija</a><a href="o-nama.html">O nama</a><a href="kontakt.html">Kontakt</a>
         </div>
-        <div class="grid-3">
-          <article class="dish">
-            <div class="photo ar-6-5"><img src="img/biftek.jpg" alt="Lorem ipsum dolor" loading="lazy" width="1280" height="1600"></div>
-            <p class="eyebrow">Lorem ipsum</p><h3>Lorem ipsum dolor</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-          </article>
-          <article class="dish">
-            <div class="photo ar-4-5"><img src="img/cezar-salata.jpg" alt="Lorem ipsum dolor" loading="lazy" width="1280" height="1600"></div>
-            <p class="eyebrow">Lorem ipsum</p><h3>Lorem ipsum dolor</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-          </article>
-          <article class="dish">
-            <div class="photo ar-6-5"><img src="img/ruska-snicla-pire.jpg" alt="Lorem ipsum dolor" loading="lazy" width="1280" height="1600"></div>
-            <p class="eyebrow">Lorem ipsum</p><h3>Lorem ipsum dolor</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-          </article>
+        <div class="footer-col">
+          <h2>Lokacija</h2>
+          <p>Lorem ipsum 12, 00000 Dolor</p>
+          <a class="link" href="kontakt.html#mapa">Pogledaj na mapi</a>
         </div>
-      </div>
-    </section>
-
-    <!-- AMBIJENT -->
-    <section class="section dark">
-      <div class="wrap stack" style="gap:48px">
-        <div class="split" style="align-items:end">
-          <div class="stack" style="gap:20px">
-            <p class="eyebrow">Lorem ipsum</p>
-            <h2 class="display-l">Lorem ipsum dolor sit. Amet consectetur elit.</h2>
-          </div>
-          <div class="stack" style="gap:20px">
-            <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a class="link" href="galerija.html" style="align-self:flex-start">Pogledaj naš ambijent</a>
-          </div>
-        </div>
-        <div class="split split--photo-right" style="align-items:end;gap:32px">
-          <div class="photo ar-16-9"><img src="img/reka-zalazak.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="1600" height="1200"></div>
-          <figure>
-            <div class="photo ar-1-1"><img src="img/cokolada-caj-reka.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="1280" height="1600"></div>
-            <figcaption class="eyebrow caption">Lorem ipsum dolor sit amet.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- FILOZOFIJA -->
-    <section class="section">
-      <div class="wrap stack" style="gap:44px">
-        <div class="row" style="gap:16px 100px">
-          <p class="eyebrow">Lorem ipsum dolor</p>
-          <h2 class="display-m" style="flex:1;min-width:260px">Lorem ipsum dolor sit. Amet consectetur.</h2>
-        </div>
-        <hr style="border:0;border-top:1px solid var(--line);margin:0;width:100%">
-        <div class="grid-3" style="gap:32px 64px">
-          <div class="stack" style="gap:16px"><h3 class="display-s">Lorem ipsum</h3><p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p></div>
-          <div class="stack" style="gap:16px"><h3 class="display-s">Dolor sit</h3><p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p></div>
-          <div class="stack" style="gap:16px"><h3 class="display-s">Amet elit</h3><p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HRANA I VINO -->
-    <section class="section" style="padding-top:0">
-      <div class="wrap split split--photo-left">
-        <div class="photo ar-4-5"><img src="img/kapucino-enterijer.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="1200" height="1600"></div>
-        <div class="stack">
-          <p class="eyebrow">Lorem ipsum</p>
-          <h2 class="display-l">Lorem ipsum.<br>Dolor sit amet.</h2>
-          <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <ul style="border-top:1px solid var(--line);padding-top:24px;display:grid;gap:18px">
-            <li class="row" style="justify-content:space-between"><span class="small">Lorem ipsum dolor</span><em style="font:italic 22px/1.3 var(--serif);color:var(--grey)">Sit amet consectetur</em></li>
-            <li class="row" style="justify-content:space-between"><span class="small">Lorem ipsum dolor</span><em style="font:italic 22px/1.3 var(--serif);color:var(--grey)">Sit amet consectetur</em></li>
-            <li class="row" style="justify-content:space-between"><span class="small">Lorem ipsum dolor</span><em style="font:italic 22px/1.3 var(--serif);color:var(--grey)">Sit amet consectetur</em></li>
+        <div class="footer-col">
+          <h2>Radno vreme</h2>
+          <ul class="footer-hours">
+            <li><span>Pon – Pet</span><span>00:00 – 00:00</span></li>
+            <li><span>Subota</span><span>00:00 – 00:00</span></li>
+            <li><span>Nedelja</span><span>00:00 – 00:00</span></li>
           </ul>
-          <a class="btn btn--dark btn--block-sm" href="karta-pica.html" style="align-self:flex-start">Pogledaj kartu pića</a>
+        </div>
+        <div class="footer-col">
+          <h2>Kontakt</h2>
+          <p>+381 00 000 00 00<br>lorem@cortauno.rs</p>
+          <a class="link" href="kontakt.html#rezervacija">Rezerviši sto</a>
         </div>
       </div>
-    </section>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Corta Uno. Sva prava zadržana.</p>
+      <a href="#top">Na početak ↑</a>
+    </div>
+  </div>
+</footer>
 
-    <!-- SLATKI ZAVRŠETAK -->
-    <section class="soft">
-      <div class="split" style="gap:0;align-items:stretch">
-        <div class="stack wrap" style="justify-content:center;padding-block:clamp(56px,7vw,96px);margin:0;max-width:672px">
-          <p class="eyebrow">Lorem ipsum</p>
-          <h2 class="display-l">Lorem ipsum dolor?<br>Sit amet.</h2>
-          <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <a class="link" href="meni.html" style="align-self:flex-start">Pogledaj deserte</a>
-        </div>
-        <div class="photo" style="min-height:420px"><img src="img/latte-srce.jpg" alt="Lorem ipsum dolor sit amet" loading="lazy" width="900" height="1600"></div>
-      </div>
-    </section>
-
-    <!-- POSETITE NAS -->
-    <section class="section" style="padding-block:clamp(48px,5vw,72px)">
-      <div class="wrap row" style="justify-content:space-between;gap:32px 64px">
-        <div class="stack" style="gap:12px;max-width:520px">
-          <p class="eyebrow">Lorem ipsum</p>
-          <h2 class="display-m">Lorem ipsum dolor sit amet.</h2>
-        </div>
-        <div class="row" style="gap:24px 48px;align-items:flex-start">
-          <div class="info-block"><p class="eyebrow">Adresa</p><p>Lorem ipsum 12<br>00000 Dolor</p></div>
-          <div class="info-block"><p class="eyebrow">Radno vreme</p><p>Pon – Pet 00:00 – 00:00<br>Sub – Ned 00:00 – 00:00</p></div>
-        </div>
-        <a class="btn btn--dark btn--block-sm" href="kontakt.html">Pogledaj lokaciju</a>
-      </div>
-    </section>
-  </main>
-
-  <div id="site-footer"></div>
-  <script src="site.js"></script>
+<!-- Jedini JS: otvaranje mobilnog menija (možeš ga obrisati, ali meni na telefonu neće raditi) -->
+<script>
+const t=document.querySelector('.nav-toggle'),h=document.querySelector('.site-header');
+function setNav(o){h.classList.toggle('nav-open',o);document.body.classList.toggle('nav-lock',o);t.setAttribute('aria-expanded',o);t.setAttribute('aria-label',o?'Zatvori meni':'Otvori meni')}
+t.addEventListener('click',()=>setNav(t.getAttribute('aria-expanded')!=='true'));
+document.addEventListener('keydown',e=>e.key==='Escape'&&setNav(false));
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>setNav(false)));
+</script>
 </body>
 </html>
